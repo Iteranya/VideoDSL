@@ -1,0 +1,49 @@
+[
+    {
+        "type": "meta",
+        "action": "start",
+        "id": 0
+    },
+    {
+        "type": "modify_background",
+        "background": "asset/end.png",
+        "id": 1
+    },
+    {
+        "type": "play_music",
+        "action": "play_music",
+        "music": "mice.ogg",
+        "id": 2
+    },
+    {
+        "type": "duration",
+        "duration": 5.0,
+        "id": 3
+    },
+    {
+        "type": "show_sprite",
+        "action": "show",
+        "sprite": "hikarin",
+        "location": "characters/hikarin/default/normal.png",
+        "dyn_location": "characters/hikarin/<hikarin_outfit>/normal.png",
+        "position": "CENTER",
+        "wRatio": 16,
+        "hRatio": 9,
+        "wFrameRatio": 4,
+        "hFrameRatio": 8,
+        "column": 7,
+        "row": 1,
+        "duration": 0,
+        "id": 4
+    },
+    {
+        "type": "duration",
+        "duration": 5.0,
+        "id": 5
+    },
+    {
+        "type": "finish_video",
+        "action": "finish_video",
+        "id": 6
+    }
+]

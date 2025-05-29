@@ -6,7 +6,7 @@ def compileVN(script):
     # The story 'script' file, automatically compiles into a list of dict, each one represents a state
     script_actions = script
     # Go ahead and turn on the following to check the list of dict, each one represents a state
-    # print(script_actions)
+    print(script_actions)
     flat = flattenVN(script_actions)
     flat = sanitize(flat)
     check(flat)
@@ -119,8 +119,14 @@ def save_to_json_file(data: list[dict], file_path: str):
 
 def compile(storyname,script):
     print("Compiling VN script to FSM...")
+    print(script)
     fsm =compileVN(script)
     save_to_json_file(fsm,"mediafile/scripts/"+storyname+".json")
+
+def video_compile(videoname,script):
+    print("Compiling Video Script to JSON")
+    vs =compileVideo(script)
+    save_to_json_file(vs,"mediafile/scripts/"+videoname+".json")
 
 def sound_compile(sounds):
     result = compile_sound(sounds)

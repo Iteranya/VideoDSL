@@ -628,7 +628,7 @@ class VideoModule(): # Module Class, just add more function as you like
         self.dialogueDict.append(result)
         return result
     
-    def speak(self, character, content, voice:str=None,duration=False):
+    def speak(self, character, content, voice:str=None):
         name = ""
         if isinstance(character, Character):
             name = character.name
@@ -643,7 +643,6 @@ class VideoModule(): # Module Class, just add more function as you like
             "label": name,
             "content": content,
             "voice":voice,
-            "duration":duration
         }
         return result
     
@@ -682,7 +681,7 @@ class VideoModule(): # Module Class, just add more function as you like
         self.dialogueDict.append(result)
         return result
     
-    def show(self, character, sprite, duration):
+    def show(self, character, sprite, duration=0):
         if isinstance(character, Character):
             # Check if sprite contains any whitespace
             if re.search(r"[A-Z\s.,!?#@$*]", sprite):
@@ -707,11 +706,12 @@ class VideoModule(): # Module Class, just add more function as you like
                 "row": 1,
                 "duration":duration
             }
+            self.dialogueDict.append(result)
             return result
         else:
             pass
 
-    def show_custom(self,character,sprite,wRatio,hRatio,wFrameRatio,hFrameRatio,colPos,rowPos,duration):
+    def show_custom(self,character,sprite,wRatio,hRatio,wFrameRatio,hFrameRatio,colPos,rowPos,duration=0):
         if isinstance(character, Character): 
             if re.search(r"[A-Z\s.,!?#@$*]", sprite):
                 raise ValueError("Sprite name cannot contain special characters, white space, or uppercase letters.")
@@ -733,6 +733,7 @@ class VideoModule(): # Module Class, just add more function as you like
                 "row":rowPos,
                 "duration":duration
             }
+            self.dialogueDict.append(result)
             return result
         elif isinstance(character,str):
             location = character+"/"+sprite+".png"
@@ -751,11 +752,12 @@ class VideoModule(): # Module Class, just add more function as you like
                 "row":rowPos,
                 "duration":duration
             }
+            self.dialogueDict.append(result)
             return result
         else:
             pass
 
-    def show_left(self,character,sprite,duration):
+    def show_left(self,character,sprite,duration=0):
         if isinstance(character, Character): 
             if re.search(r"[A-Z\s.,!?#@$*]", sprite):
                 raise ValueError("Sprite name cannot contain special characters, white space, or uppercase letters.")
@@ -778,11 +780,12 @@ class VideoModule(): # Module Class, just add more function as you like
                 "row":1,
                 "duration":duration
             }
+            self.dialogueDict.append(result)
             return result
         else:
             pass
 
-    def show_right(self,character,sprite,duration):
+    def show_right(self,character,sprite,duration=0):
         if isinstance(character, Character): 
             if re.search(r"[A-Z\s.,!?#@$*]", sprite):
                 raise ValueError("Sprite name cannot contain special characters, white space, or uppercase letters.")
@@ -805,11 +808,12 @@ class VideoModule(): # Module Class, just add more function as you like
                 "row":1,
                 "duration":duration
             }
+            self.dialogueDict.append(result)
             return result
         else:
             pass
 
-    def show_full(self,character,sprite,duration):
+    def show_full(self,character,sprite,duration=0):
         if isinstance(character,str):
             location = character+"/"+sprite+".png"
             print("Compiling: "+sprite)
@@ -827,6 +831,7 @@ class VideoModule(): # Module Class, just add more function as you like
                 "row":1,
                 "duration":duration
             }
+            self.dialogueDict.append(result)
             return result
         else:
             pass
@@ -839,6 +844,7 @@ class VideoModule(): # Module Class, just add more function as you like
                 "action":"remove_character",
                 "sprite":character.id,
             }
+            self.dialogueDict.append(result)
             return result
         elif isinstance(character,str):
             print("Compiling: "+sprite)
@@ -847,6 +853,7 @@ class VideoModule(): # Module Class, just add more function as you like
                 "action":"remove",
                 "sprite":sprite,
             }
+            self.dialogueDict.append(result)
             return result
         else:
             pass
@@ -859,12 +866,23 @@ class VideoModule(): # Module Class, just add more function as you like
             "action" : "label",
             "label":labelName
         }
+        self.dialogueDict.append(result)
+        return result
+    
+    def time(self,duration:float):
+        print("Compiling Time")
+        result = {
+            "type":"duration",
+            "duration":duration
+        }
+        self.dialogueDict.append(result)
         return result
 
     def finish(self):
         print("Compiling A Finish Line")
         result = {
-            "type":"finish_dialogue",
-            "action": "finish_dialogue"
+            "type":"finish_video",
+            "action": "finish_video"
         }
+        self.dialogueDict.append(result)
         return result
