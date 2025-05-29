@@ -1,0 +1,1 @@
+You don't have to put anything into scripts folder, it's auto generated when you compile the script.

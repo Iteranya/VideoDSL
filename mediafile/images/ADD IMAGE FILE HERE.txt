@@ -1,0 +1,3 @@
+Please pay attention to the folder structure
+
+pack.png is the picture of your resource pack as it appears in the game.
